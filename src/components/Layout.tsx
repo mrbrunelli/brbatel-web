@@ -1,6 +1,9 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { ReactNode } from 'react';
+import Head from 'next/head';
+import Link from "next/link";
+import styles from "../styles/components/Layout.module.css";
+import { FiSearch, FiUser } from "react-icons/fi";
+import Logo from "../components/Logo"
 
 type Props = {
   children?: ReactNode
@@ -14,27 +17,32 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
         <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+          <a>
+            <Logo width={120} />
+          </a>
+        </Link>
+        <div className={styles.searchBarWrapper}>
+          <FiSearch className={styles.searchIcon} />
+          <input className={styles.searchBar} type="text" placeholder="Pesquisar Empresas" />
+        </div>
+        <div className={styles.avatarWrapper}>
+          <span className={styles.avatar}>
+            <FiUser className={styles.avatarIcon} />
+          </span>
+          <Link href="/logout">
+            <a>Sair</a>
+          </Link>
+        </div>
       </nav>
     </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <div className={styles.container}>
+      <main className={styles.main}>
+        {children}
+      </main>
+    </div>
   </div>
 )
 
