@@ -1,15 +1,41 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import { useEffect } from "react";
+import { useState } from "react";
+import { api } from "../services/api";
+import Card from "../components/Card";
+import styles from "../styles/pages/HomePage.module.css";
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+const HomePage = () => {
+  const [companies, setCompanies] = useState([]);
 
-export default IndexPage
+  const findAll = async () => {
+    try {
+      const response = await api.get("/companies");
+      const { companies } = response.data;
+      setCompanies(companies);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    findAll();
+  }, []);
+
+  return (
+    <div>
+      <p>Empresas</p>
+      <div className={styles.container}>
+        {companies.map((c: any) => (
+          <Card
+            key={c.id}
+            title={c.name}
+            description={c.about}
+            imgSrc="https://via.placeholder.com/150"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default HomePage
