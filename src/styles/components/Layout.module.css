@@ -61,19 +61,21 @@
   margin-left: 0.5rem;
   text-decoration: none;
   color: var(--white);
+  font-weight: bold;
 }
 
 .avatar {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 2px solid var(--white);
+  border: 2px solid var(--primary);
   padding: 0.5rem;
 }
 
 .avatarIcon {
   color: var(--primary);
+  font-size: 1.2rem;
 }
