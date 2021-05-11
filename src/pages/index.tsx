@@ -28,6 +28,7 @@ const HomePage = () => {
         {companies.map((c: any) => (
           <Card
             key={c.id}
+            id={c.id}
             title={c.name}
             description={c.about}
             imgSrc="https://via.placeholder.com/150"
